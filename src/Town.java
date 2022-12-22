@@ -11,6 +11,7 @@ public class Town
     private Terrain terrain;
     private String printMessage;
     private boolean toughTown;
+    private Treasure treasure;
 
     //Constructor
     /**
@@ -31,6 +32,8 @@ public class Town
 
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
+
+        treasure = new Treasure();
     }
 
     public String getLatestNews()
@@ -125,6 +128,28 @@ public class Town
             }
         }
     }
+
+
+    public void huntForTreasure(){
+        String treasureStr = treasure.getType();
+        printMessage = "You search in the town for treasure... and found" + treasureStr;
+        if(treasureStr.equals(treasure.DUST)){
+            printMessage += ("\nAhhhchoo! That dust is mighty dusty, and it's certainly no treasure!");
+        }
+        else
+        {
+            if
+        }
+
+    }
+
+
+
+
+
+
+
+
 
     public String toString()
     {
