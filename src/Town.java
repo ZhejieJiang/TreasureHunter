@@ -138,17 +138,20 @@ public class Town
         }
         else
         {
-            if
+            if(hunter.collectTreasure(treasure))
+            {
+                printMessage += ("\n That's a new one! You pick it up and add it to your treasure collection");
+                if(Treasure.collectionHAsALLTreasures(hunter.getTreasureCollection()))
+                {
+                winCondition = 1;
+                }
+            }
+            else
+            {
+                printMessage += ("You have one of those already, who needs two?! You put it back.");
+            }
         }
-
     }
-
-
-
-
-
-
-
 
 
     public String toString()

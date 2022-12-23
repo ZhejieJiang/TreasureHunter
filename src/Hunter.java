@@ -11,6 +11,7 @@ public class Hunter
     //instance variables
     private String hunterName;
     private String kit;
+    private String treasureCollection;
     private int gold;
 
     //Constructor
@@ -23,6 +24,7 @@ public class Hunter
     {
         this.hunterName = hunterName;
         kit = "";
+        treasureCollection = "";
         gold = startingGold;
     }
 
@@ -32,6 +34,10 @@ public class Hunter
         return hunterName;
     }
 
+    public String getTreasureCollection()
+    {
+        return treasureCollection;
+    }
     public String getKit()
     {
         return kit;
@@ -132,20 +138,20 @@ public class Hunter
     }
 
     /**
-     * Searches the kit String for a specified item.
+     * Searches the inventory String for a specified item.
      *
      * @param item The search item
      *
      * @return true if the item is found.
      */
-    public boolean hasItemInKit(String item)
+    public boolean hasItem(String item, String inventory)
     {
         int placeholder = 0;
 
-        while (placeholder < kit.length() - 1)
+        while (placeholder < inventory.length() - 1)
         {
-            int endOfItem = kit.indexOf(KIT_DELIMITER, placeholder);
-            String tmpItem = kit.substring(placeholder, endOfItem);
+            int endOfItem = inventory.indexOf(KIT_DELIMITER, placeholder);
+            String tmpItem = inventory.substring(placeholder, endOfItem);
             placeholder = endOfItem + 1;
             if (tmpItem.equals(item))
             {
@@ -176,6 +182,49 @@ public class Hunter
         return printableKit;
     }
 
+
+
+
+
+    /**
+     * Checks to make sure that the treasure has not already been collected.
+     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
+     * A KIT_DELIMITER character is added to the end of the of String.
+     *
+     * @param item The item to be added to the kit.
+     * @returns true if the item is not in the kit and has been added.
+     */
+    private boolean collectTreasure(String item)
+    {
+        if (!hasItemInKit(item))
+        {
+            kit += item + KIT_DELIMITER;
+            return true;
+        }
+
+        return false;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * @return A string representation of the hunter.
      */
@@ -188,4 +237,5 @@ public class Hunter
         }
         return str;
     }
+
 }
