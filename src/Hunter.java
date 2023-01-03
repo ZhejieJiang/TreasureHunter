@@ -193,7 +193,7 @@ public class Hunter
         while (updatedStr.indexOf(DELIMITER) != -1)
         {
             index = updatedStr.indexOf(DELIMITER);;;;;;
-            updatedStr = updatedStr.substring(0,index) + space + updatedStr,substring(index+1);
+            updatedStr = updatedStr.substring(0,index) + space + updatedStr.substring(index+1);
 
         }
         return updatedStr;
