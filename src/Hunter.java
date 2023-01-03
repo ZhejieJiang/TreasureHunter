@@ -18,7 +18,7 @@ public class Hunter
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
-     * @param name The hunter's name.
+     * @param hunterName The hunter's name.
      */
     public Hunter(String hunterName, int startingGold)
     {
@@ -210,7 +210,7 @@ public class Hunter
      */
     private boolean collectTreasure(String item)
     {
-        if (!hasItemInKit(item))
+        if (!hasItem(item, treasureCollection))
         {
             kit += item + DELIMITER;
             return true;
@@ -225,7 +225,7 @@ public class Hunter
      * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
      * A KIT_DELIMITER character is added to the end of the of String.
      *
-     * @param item The item to be added to the kit.
+     * @param treasure The treasure to be added to the kit.
      * @returns true if the item is not in the kit and has been added.
      */
     boolean collectTreasure(Treasure treasure)
