@@ -6,7 +6,7 @@
 public class Hunter
 {
     //Keeps the items in the kit or inventory separate
-    private static final String KIT_DELIMITER = ";";
+    private static final String DELIMITER = ";";
 
     //instance variables
     private String hunterName;
@@ -110,7 +110,7 @@ public class Hunter
         if (itmIdx >= 0)
         {
             String tmpKit = kit.substring(0, itmIdx);
-            int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
+            int endIdx = kit.indexOf(DELIMITER, itmIdx);
             tmpKit += kit.substring(endIdx + 1);
 
             // update kit
@@ -130,7 +130,7 @@ public class Hunter
     {
         if (!hasItem(item,kit))
         {
-            kit += item + KIT_DELIMITER;
+            kit += item + DELIMITER;
             return true;
         }
 
@@ -150,7 +150,7 @@ public class Hunter
 
         while (placeholder < inventory.length() - 1)
         {
-            int endOfItem = inventory.indexOf(KIT_DELIMITER, placeholder);
+            int endOfItem = inventory.indexOf(DELIMITER, placeholder);
             String tmpItem = inventory.substring(placeholder, endOfItem);
             placeholder = endOfItem + 1;
             if (tmpItem.equals(item))
@@ -192,7 +192,7 @@ public class Hunter
 
         while (updatedStr.indexOf(DELIMITER) != -1)
         {
-            index = updatedStr.indexOf(DELIMITER);;;;;;
+            index = updatedStr.indexOf(DELIMITER);
             updatedStr = updatedStr.substring(0,index) + space + updatedStr.substring(index+1);
 
         }
@@ -212,7 +212,7 @@ public class Hunter
     {
         if (!hasItemInKit(item))
         {
-            kit += item + KIT_DELIMITER;
+            kit += item + DELIMITER;
             return true;
         }
 
@@ -228,27 +228,17 @@ public class Hunter
      * @param item The item to be added to the kit.
      * @returns true if the item is not in the kit and has been added.
      */
-    private boolean collectTreasure(Treasure treasure)
+    boolean collectTreasure(Treasure treasure)
     {
         String item = treasure.getType();
         if (!hasItem(item,treasureCollection))
         {
-            treasureCollection += item + KIT_DELIMITER;
+            treasureCollection += item + DELIMITER;
             return true;
         }
 
         return false;
     }
-
-
-
-
-
-
-
-
-
-
 
 
 

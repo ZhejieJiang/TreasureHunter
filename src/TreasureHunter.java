@@ -99,8 +99,9 @@ public class TreasureHunter
     {
         Scanner scanner = new Scanner(System.in);
         String choice = "";
+        int winCondition = currentTown.getWinCondition();
 
-        while (!(choice.equals("X") || choice.equals("x")))
+        while (!(choice.equals("X") || choice.equals("x") || winCondition != 0))
         {
             System.out.println();
             System.out.println(currentTown.getLatestNews());
@@ -117,6 +118,19 @@ public class TreasureHunter
             System.out.print("What's your next move? ");
             choice = scanner.nextLine();
             processChoice(choice);
+
+            //update winCondition after last move
+            winCondition = currentTown.getWinCondition();
+            if (winCondition == 1)
+            {
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("Quite the treasure hunter yee are! Don't spend it all in one place! You win, game over.");
+            }
+            if(winCondition == 2)
+            {
+                System.out.println(currentTown.getLatestNews());
+                System.out.println("Not enough gold to pay your debts! Try your luck again! You lose, game over.");
+            }
         }
     }
 
