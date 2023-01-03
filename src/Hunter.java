@@ -5,7 +5,7 @@
  */
 public class Hunter
 {
-    //Keeps the items in the kit separate
+    //Keeps the items in the kit or inventory separate
     private static final String KIT_DELIMITER = ";";
 
     //instance variables
@@ -67,7 +67,7 @@ public class Hunter
      */
     public boolean buyItem(String item, int costOfItem)
     {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item))
+        if (costOfItem == 0 || gold < costOfItem || hasItem(item,kit))
         {
             return false;
         }
@@ -87,7 +87,7 @@ public class Hunter
      */
     public boolean sellItem(String item, int buyBackPrice)
     {
-        if (buyBackPrice <= 0 || !hasItemInKit(item))
+        if (buyBackPrice <= 0 || !hasItem(item,kit))
         {
             return false;
         }
@@ -128,7 +128,7 @@ public class Hunter
      */
     private boolean addItem(String item)
     {
-        if (!hasItemInKit(item))
+        if (!hasItem(item,kit))
         {
             kit += item + KIT_DELIMITER;
             return true;
@@ -169,21 +169,35 @@ public class Hunter
      */
     public String getInventory()
     {
-        String printableKit = kit;
-        String space = " ";
-
-        int index = 0;
-
-        while (printableKit.indexOf(KIT_DELIMITER) != -1)
-        {
-            index = printableKit.indexOf(KIT_DELIMITER);
-            printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
-        }
+        String printableKit = replaceDelimiter(kit);
         return printableKit;
     }
 
+    /** Returns a printable representation of the treasure collection, which
+     *  is a list of the treasures, with the KIT_DELIMITER replaced with a space
+     *
+     * @return  The printable String representation of the treasure collection
+     */
+    public String getTreasures()
+    {
+        String printableTreasure = replaceDelimiter(treasureCollection);
+        return printableTreasure;
+    }
 
+    private String replaceDelimiter(String str)
+    {
+        String updatedStr = str;
+        String space = " ";
+        int index = 0;
 
+        while (updatedStr.indexOf(DELIMITER) != -1)
+        {
+            index = updatedStr.indexOf(DELIMITER);;;;;;
+            updatedStr = updatedStr.substring(0,index) + space + updatedStr,substring(index+1);
+
+        }
+        return updatedStr;
+    }
 
 
     /**
@@ -206,7 +220,25 @@ public class Hunter
     }
 
 
+    /**
+     * Checks to make sure that the treasure has not already been collected.
+     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
+     * A KIT_DELIMITER character is added to the end of the of String.
+     *
+     * @param item The item to be added to the kit.
+     * @returns true if the item is not in the kit and has been added.
+     */
+    private boolean collectTreasure(Treasure treasure)
+    {
+        String item = treasure.getType();
+        if (!hasItem(item,treasureCollection))
+        {
+            treasureCollection += item + KIT_DELIMITER;
+            return true;
+        }
 
+        return false;
+    }
 
 
 
@@ -234,6 +266,16 @@ public class Hunter
         if (!kit.equals(""))
         {
             str += " and " + getInventory();
+        }
+
+        str += "\nTreasures collected: ";
+        if (!treasureCollection.equals(""))
+        {
+            str += getTreasures();
+        }
+        else
+        {
+            str += "none";
         }
         return str;
     }

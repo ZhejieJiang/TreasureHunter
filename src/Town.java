@@ -13,7 +13,8 @@ public class Town
     private boolean toughTown;
     private Treasure treasure;
 
-    //Constructor
+    //set to 0 initially; 1 == win & game over; 2 == lose & game over
+    private int winCondition;
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
      * @param s The town's shoppe.
@@ -34,8 +35,13 @@ public class Town
         toughTown = (Math.random() < toughness);
 
         treasure = new Treasure();
+        winCondition = 0;
     }
 
+    public int getWinCondition()
+    {
+        return winCondition;
+    }
     public String getLatestNews()
     {
         return printMessage;
