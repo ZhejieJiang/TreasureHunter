@@ -118,7 +118,15 @@ public class Town
         }
         else
         {
-            printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
+            if(terrain.getTerrainName().equals("Plains")){
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";}
+            else if(terrain.getTerrainName().equals("Desert")){
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";}
+            else if(terrain.getTerrainName().equals("Jungle")){
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";}
+            else if(terrain.getTerrainName().equals("Ocean")){
+                printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";}
+            else{printMessage =}
             int goldDiff = (int)(Math.random() * 10) + 1;
             if (Math.random() > noTroubleChance)
             {
