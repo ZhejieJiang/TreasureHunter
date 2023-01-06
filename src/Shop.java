@@ -13,6 +13,7 @@ public class Shop
     private static final int MACHETE_COST = 6;
     private static final int HORSE_COST = 12;
     private static final int BOAT_COST = 20;
+    private static final int TORCH_COST = 10;
 
     // instance variables
     private double markdown;
@@ -91,6 +92,7 @@ public class Shop
         str += "Machete: " + MACHETE_COST + " gold\n";
         str += "Horse: " + HORSE_COST + " gold\n";
         str += "Boat: " + BOAT_COST + " gold\n";
+        str += "Torch: " + TORCH_COST + " gold\n";
 
         return str;
     }
@@ -155,25 +157,28 @@ public class Shop
      */
     public int getCostOfItem(String item)
     {
-        if (item.equals("Water") || item.equals("water"))
+        if ((item).equalsIgnoreCase("Water")  )
         {
             return WATER_COST;
         }
-        else if (item.equals("Rope") || item.equals("rope"))
+        else if ((item).equalsIgnoreCase("Rope") )
         {
             return ROPE_COST;
         }
-        else if (item.equals("Machete") || item.equals("machete"))
+        else if ((item).equalsIgnoreCase("Machete"))
         {
             return MACHETE_COST;
         }
-        else if (item.equals("Horse") || item.equals("horse"))
+        else if ((item).equalsIgnoreCase("Horse") )
         {
             return HORSE_COST;
         }
-        else if (item.equals("Boat") || item.equals("boat"))
+        else if ((item).equalsIgnoreCase("Boat") )
         {
-            return BOAT_COST;
+            return BOAT_COST;}
+        else if ((item).equalsIgnoreCase("Torch") )
+        {
+            return TORCH_COST;
         }
         else
         {

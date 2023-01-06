@@ -13,7 +13,9 @@ public class TreasureHunter
     private Town currentTown;
     private Hunter hunter;
     private boolean hardMode;
+    private boolean easyMode;
 
+    private boolean cheatMode;
     //Constructor
     /**
      * Constructs the Treasure Hunter game.
@@ -24,6 +26,8 @@ public class TreasureHunter
         currentTown = null;
         hunter = null;
         hardMode = false;
+        easyMode = false;
+        cheatMode = false;
     }
 
     // starts the game; this is the only public method
@@ -55,6 +59,22 @@ public class TreasureHunter
         {
             hardMode = true;
         }
+        System.out.print("Easy mode? (y/n): ");
+        String easy = scanner.nextLine();
+        if (easy.equals("y") || easy.equals("Y"))
+        {
+            if(hardMode){System.out.print("You can't do hard and easy Mode");}
+            else{
+            easyMode = true;
+            hunter = new Hunter(name, 20);
+            }
+        }
+        System.out.print("Cheat mode? (y/n): ");
+        String cheat = scanner.nextLine();
+        if (cheat.equals("y") || cheat.equals("Y"))
+        {
+            cheatMode = true;
+        }
     }
 
     /**
@@ -72,7 +92,22 @@ public class TreasureHunter
             // and the town is "tougher"
             toughness = 0.75;
         }
+        if (easyMode)
+        {
+            // in easy mode, you get all the money back when you sell items
+            markdown = 0;
 
+            // and the town is "less tougher"
+            toughness = 0.1;
+        }
+        if (cheatMode)
+        {
+            // in easy mode, you get all the money back when you sell items
+            markdown = 0;
+
+            // and every battle is won"
+            toughness = 0;
+        }
         // note that we don't need to access the Shop object
         // outside of this method, so it isn't necessary to store it as an instance
         // variable; we can leave it as a local variable
@@ -108,12 +143,16 @@ public class TreasureHunter
             System.out.println("***");
             System.out.println(hunter);
             System.out.println(currentTown);
+            System.out.println();
+            System.out.println("*********** Menu ***********");
             System.out.println("(B)uy something at the shop.");
             System.out.println("(S)ell something at the shop.");
             System.out.println("(M)ove on to a different town.");
             System.out.println("(L)ook for trouble!");
             System.out.println("(H)unt for treasure.");
             System.out.println("Give up the hunt and e(X)it.");
+            System.out.println("****************************");
+
             System.out.println();
             System.out.print("What's your next move? ");
             choice = scanner.nextLine();
