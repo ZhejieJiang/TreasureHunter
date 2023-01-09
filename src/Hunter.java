@@ -102,21 +102,23 @@ public class Hunter
      *
      * @param item The item to be removed.
      */
+
     public void removeItemFromKit(String item)
+{
+    int itmIdx = kit.indexOf(item);
+
+    // if item is found
+    if (itmIdx >= 0)
     {
-        int itmIdx = kit.indexOf(item);
+        String tmpKit = kit.substring(0, itmIdx);
+        int endIdx = kit.indexOf(DELIMITER, itmIdx);
+        tmpKit += kit.substring(endIdx + 1);
 
-        // if item is found
-        if (itmIdx >= 0)
-        {
-            String tmpKit = kit.substring(0, itmIdx);
-            int endIdx = kit.indexOf(DELIMITER, itmIdx);
-            tmpKit += kit.substring(endIdx + 1);
-
-            // update kit
-            kit = tmpKit;
-        }
+        // update kit
+        kit = tmpKit;
     }
+}
+
 
     /**
      * Checks to make sure that the item is not already in the kit.

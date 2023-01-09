@@ -63,7 +63,7 @@ public class TreasureHunter
         String easy = scanner.nextLine();
         if (easy.equals("y") || easy.equals("Y"))
         {
-            if(hardMode){System.out.print("You can't do hard and easy Mode");}
+            if(hardMode){System.out.println("You can't do hard and easy Mode");}
             else{
             easyMode = true;
             hunter = new Hunter(name, 20);
@@ -94,8 +94,8 @@ public class TreasureHunter
         }
         if (easyMode)
         {
-            // in easy mode, you get all the money back when you sell items
-            markdown = 0;
+            // in easy mode, you get most the money back when you sell items
+            markdown = 0.75;
 
             // and the town is "less tougher"
             toughness = 0.1;
@@ -103,7 +103,7 @@ public class TreasureHunter
         if (cheatMode)
         {
             // in easy mode, you get all the money back when you sell items
-            markdown = 0;
+            markdown = 1;
 
             // and every battle is won"
             toughness = 0;

@@ -8,12 +8,12 @@ import java.util.Scanner;
 public class Shop
 {
     // constants
-    private static final int WATER_COST = 2;
-    private static final int ROPE_COST = 4;
-    private static final int MACHETE_COST = 6;
-    private static final int HORSE_COST = 12;
-    private static final int BOAT_COST = 20;
-    private static final int TORCH_COST = 10;
+    private static int WATER_COST = 2;
+    private static int ROPE_COST = 4;
+    private static int MACHETE_COST = 6;
+    private static int TORCH_COST = 10;
+    private static int HORSE_COST = 12;
+    private static int BOAT_COST = 20;
 
     // instance variables
     private double markdown;
@@ -24,6 +24,22 @@ public class Shop
     {
         this.markdown = markdown;
         customer = null;
+        if(markdown == 1){
+            WATER_COST = 1;
+            ROPE_COST = 1;
+            MACHETE_COST = 1;
+            HORSE_COST = 1;
+            BOAT_COST = 1;
+            TORCH_COST =1;
+        }
+        if(markdown == 0.75){
+            WATER_COST = 1;
+            ROPE_COST = 2;
+            MACHETE_COST = 3;
+            HORSE_COST = 6;
+            BOAT_COST = 10;
+            TORCH_COST = 5;
+        }
     }
 
     /** method for entering the shop

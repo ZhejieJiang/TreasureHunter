@@ -13,12 +13,13 @@ public class Town
     private boolean toughTown;
     private Treasure treasure;
     private boolean cheat;
+    private boolean easy;
     //set to 0 initially; 1 == win & game over; 2 == lose & game over
     private int winCondition;
     /**
      * The Town Constructor takes in a shop and the surrounding terrain, but leaves the hunter as null until one arrives.
-     * @param s The town's shoppe.
-     * @param t The surrounding terrain.
+     * @param shop The town's shoppe.
+     * @param toughness The surrounding terrain.
      */
     public Town(Shop shop, double toughness)
     {
@@ -34,6 +35,7 @@ public class Town
         // higher toughness = more likely to be a tough town
         toughTown = (Math.random() < toughness);
         cheat = (toughness == 0);
+        easy = (toughness == 0.1);
         treasure = new Treasure();
         winCondition = 0;
     }
@@ -49,7 +51,7 @@ public class Town
 
     /**
      * Assigns an object to the Hunter in town.
-     * @param h The arriving Hunter.
+     * @param hunter The arriving Hunter.
      */
     public void hunterArrives(Hunter hunter)
     {
@@ -128,6 +130,7 @@ public class Town
                 printMessage = "You want trouble, stranger!  You're surrounded by water\nBoom,bam,pow\n";}
             else{printMessage = "If its a fight you want, you got it, \nOof! Umph! Ow!\n"; }
             int goldDiff = (int)(Math.random() * 10) + 1;
+            if(easy){goldDiff *= 2;}
             if (Math.random() > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";
@@ -211,23 +214,23 @@ public class Town
     private Terrain getNewTerrain()
     {
         double rnd = Math.random();
-        if (rnd < .1)
+        if (rnd < .16)
         {
             return new Terrain("Mountains", "Rope");
         }
-        else if (rnd < .2)
+        else if (rnd < .33)
         {
             return new Terrain("Ocean", "Boat");
         }
-        else if (rnd < .3)
+        else if (rnd < .5)
         {
             return new Terrain("Plains", "Horse");
         }
-        else if (rnd < .4)
+        else if (rnd < .66)
         {
             return new Terrain("Desert", "Water");
         }
-        else if (rnd <.9)
+        else if (rnd <.83)
         {
             return new Terrain("Cave", "Torch");
         }
